@@ -1,0 +1,10 @@
+*.cpg
+*.dbf
+*.dxf
+*.iges
+*.json
+*.prj
+*.shp
+*.shx
+*.step
+*.svg
