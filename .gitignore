@@ -8,3 +8,4 @@
 *.shx
 *.step
 *.svg
+/__pycache__
