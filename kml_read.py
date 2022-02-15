@@ -3,6 +3,7 @@ import logging
 
 # Define tags used in kml and how many of those are expected in a kml with
 # exactly 2 points defined, to avoid trying to parse an incompatible file
+# TODO: allow for KML to have multiple runways
 name_start = "<name>"  # start tag
 name_end = "</name>"  # end tag
 valid_name_count_nominal = 4  # how many of these tags are expected in file
@@ -42,6 +43,7 @@ class ReadKML:
         else:
             return False
 
+# TODO: ability to read data for multiple runways
     def getRwyEndData(self):
         '''Generate library with point names and coordinates if valid file'''
         rwyend_data = []
@@ -56,8 +58,3 @@ class ReadKML:
             data_entry["lon"] = float(coords[0])
             rwyend_data.append(data_entry)
         return rwyend_data
-
-
-# TODO - Read KML file
-
-# TODO - Identify RWY ends

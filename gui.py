@@ -1,8 +1,12 @@
 import tkinter
 import tkinter.filedialog
+import tkinter.messagebox
 from windows import set_dpi_awareness
 
 set_dpi_awareness()
+
+color_bg_dark = "#adadad"
+color_bg_light = "#cccccc"
 
 
 class Window(tkinter.Tk):
@@ -12,9 +16,7 @@ class Window(tkinter.Tk):
                  airport_kml,
                  *args, **kwargs):
         super().__init__()
-        color_bg_dark = "#adadad"
-        color_bg_light = "#cccccc"
-        self.title("Annex 14  to  KML")
+        self.title("Annex 14 to KML")
         self.resizable(False, False)
         self.config(padx=20, pady=20, bg=color_bg_dark)
         self.airport_name = airport_name
@@ -73,3 +75,30 @@ class Window(tkinter.Tk):
         button_quit.grid(column=0, row=0, sticky='es')
         button_submit = tkinter.Button(frame_buttons, text="Submit", command=self.destroy)
         button_submit.grid(column=0, row=1, sticky='es', pady=(10, 0))
+
+    def promptInvalidInput(self):
+        tkinter.messagebox.showinfo(
+            "Invalid Input",
+            "Annex 14 to KML error:\n\n" +
+            "One of the input paramaters is incorrect, please check and re-submit."
+        )
+
+
+class ParameterDisplay(tkinter.Tk):
+    def __init__(self, parameters, *args, **kwards):
+        super().__init__()
+        self.title("Annex 14 to KML: Parameters")
+        self.resizable(False, False)
+        self.config(padx=20, pady=20, bg=color_bg_dark)
+        label_airport_name = tkinter.Label(self, text=parameters['airport'])
+        label_airport_name.pack()
+        label_rwy_code = tkinter.Label(self, text=parameters['code'])
+        label_rwy_code.pack()
+        label_rwy_length = tkinter.Label(self, text=parameters['length'])
+        label_rwy_length.pack()
+        label_rwy_classification = tkinter.Label(self, text=parameters['class'])
+        label_rwy_classification.pack()
+        label_rwy_bearing_to = tkinter.Label(self, text=parameters['bearing_to'])
+        label_rwy_bearing_to.pack()
+        label_rwy_bearing_from = tkinter.Label(self, text=parameters['bearing_from'])
+        label_rwy_bearing_from.pack()
